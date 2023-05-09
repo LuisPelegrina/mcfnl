@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 class FDTD_Maxwell_1D():
     def __init__(self, L=10, CFL=1.0, Nx=101):
         self.x = np.linspace(0, L, num=Nx)
-        self.d = 2
+        self.d = 0.4
         self.xDual = (self.x[1:] + self.x[:-1])/2
        
         self.eps_0 = 1.0
-        self.eps_inf = 1.1
+        self.eps_inf = 1.0
         self.mu_0 = 1.0
         self.eta_0 = np.sqrt(self.mu_0 / self.eps_0)
         self.c_0 = 1/np.sqrt(self.eps_0*self.mu_0)
@@ -103,6 +103,7 @@ class FDTD_Maxwell_1D():
         h[:] = cH * (e[1:] - e[:-1]) + h[:]
 
     def theoretical_test(self, w):
-        eps_c = self.eps_0 * self.eps_inf + self.eps_0 * self.c_p_t / (w * 1j - self.a_p_t) + self.eps_0 * np.conj(self.c_p_t) / (w * 1j - np.conj(self.a_p_t))
-        eps_c = np.abs(eps_c)
+        eps_c = self.eps_0 * self.eps_inf + self.eps_0 * self.c_p_t / (w * 1j - self.a_p_t) + self.eps_0 * np.conj(self.c_p_t) / (w * 1j -  np.conj(self.a_p_t)) 
+        #eps_c = np.abs(eps_c)
+
         return eps_c
