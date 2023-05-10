@@ -7,7 +7,7 @@ import fdtd
 
 fd = fdtd.FDTD_Maxwell_1D()
             
-x0 = 2.0; s0 = 0.25
+x0 = 2.0; s0 = 0.2
 initialField = np.exp(-(fd.x - x0)**2 / (2*s0**2))
 frec = fftshift(fftfreq(len(initialField), fd.dx))
 
@@ -42,14 +42,14 @@ for _ in np.arange(0, t_max, fd.dt):
     e_rd[int(_/fd.dt)] = fd.e[40]
 
     
-    plt.plot(fd.x, fd.e, '*')
-    plt.plot(fd.xDual, fd.h, '.')
-    plt.plot(fd.x, np.abs(fd.J), '.')
-    plt.ylim(-1.1, 1.1)
-    plt.xlim(fd.x[0], fd.x[-1])
-    plt.grid()
-    plt.pause(0.01)
-    plt.cla()
+    # plt.plot(fd.x, fd.e, '*')
+    # plt.plot(fd.xDual, fd.h, '.')
+    # plt.plot(fd.x, np.abs(fd.J), '.')
+    # plt.ylim(-1.1, 1.1)
+    # plt.xlim(fd.x[0], fd.x[-1])
+    # plt.grid()
+    # plt.pause(0.01)
+    # plt.cla()
     
 
 fn = fdtd.FDTD_Maxwell_1D()
@@ -99,11 +99,14 @@ FFT_si= fftshift(fft(e_t))
 FFT_sr= fftshift(fft(e_rd - e_t))
 FFT_st= fftshift(fft(e_td))
 
+T = abs(FFT_st / FFT_si)
+R = abs(FFT_sr / FFT_si)
+
 plt.figure()
-# plt.plot(frecT, FFT_si)
-plt.plot(frecT, FFT_sr) 
-plt.plot(frecT, FFT_st)
-plt.plot(frecT, FFT_st / FFT_si)
-plt.ylim([-10, 10])
+plt.plot(frecT*2*np.pi, T) 
+plt.plot(frecT*2*np.pi, R)
+plt.plot(frecT*2*np.pi, T**2 + R**2)
+plt.ylim([0, 1])
+plt.xlim([0, 12.5])
 plt.show()       
    
