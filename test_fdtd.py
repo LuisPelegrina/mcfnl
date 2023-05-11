@@ -107,6 +107,6 @@ plt.plot(frecT*2*np.pi, T)
 plt.plot(frecT*2*np.pi, R)
 plt.plot(frecT*2*np.pi, T**2 + R**2)
 plt.ylim([0, 1])
-plt.xlim([0, 12.5])
+plt.xlim([0, 10])
 plt.show()       
    

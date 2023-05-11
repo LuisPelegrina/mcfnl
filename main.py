@@ -37,5 +37,6 @@ T_R = [np.abs(T[i] + R[i]) for i in range(len(T))]
 plt.plot(freq, np.abs(T))
 plt.plot(freq, np.abs(R))
 plt.plot(freq, np.abs(T)**2 + np.abs(R)**2)
+plt.xlim([0, 10])
 plt.show()
 
