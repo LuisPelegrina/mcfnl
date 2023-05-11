@@ -8,7 +8,7 @@ fd = fdtd.FDTD_Maxwell_1D()
 fd.d = 0.3
 
 max_freq = 20
-n_freq = 100
+n_freq = 40
 freq = np.linspace(0, max_freq, num = n_freq)
 
 #eps_c = np.zeros(freq.shape, dtype=np.complex_)
@@ -34,9 +34,13 @@ R = [(t[0][0] * fd.eta_0 + t[0][1] - t[1][0] * fd.eta_0 ** 2 - t[1][1] * fd.eta_
 
 T_R = [np.abs(T[i] + R[i]) for i in range(len(T))]
 
-plt.plot(freq, np.abs(T))
-plt.plot(freq, np.abs(R))
-plt.plot(freq, np.abs(T)**2 + np.abs(R)**2)
-plt.xlim([0, 10])
+plt.plot(freq, np.abs(T), ".-b")
+plt.plot(freq, np.abs(R), ".-r")
+plt.plot(freq, np.abs(T)**2 + np.abs(R)**2, ".-g")
+plt.ylim([0, 1])
+plt.xlim([0, 12.5])
+plt.grid()
+plt.xlabel("ω")
+plt.legend(["Transmitancia", "Reflectividad", "$|T|^2 + |R|^2$"])
 plt.show()
 

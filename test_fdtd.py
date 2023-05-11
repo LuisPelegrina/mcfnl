@@ -103,10 +103,18 @@ T = abs(FFT_st / FFT_si)
 R = abs(FFT_sr / FFT_si)
 
 plt.figure()
-plt.plot(frecT*2*np.pi, T) 
-plt.plot(frecT*2*np.pi, R)
-plt.plot(frecT*2*np.pi, T**2 + R**2)
+plt.plot(frecT*2*np.pi, T, ".-b")
+plt.plot(frecT*2*np.pi, R, ".-r")
+plt.plot(frecT*2*np.pi, T**2 + R**2, ".-g")
 plt.ylim([0, 1])
+<<<<<<< HEAD
 plt.xlim([0, 10])
 plt.show()       
+=======
+plt.xlim([0, 12.5])
+plt.grid()
+plt.xlabel("ω")
+plt.legend(["Transmitancia", "Reflectividad", "$|T|^2 + |R|^2$"])
+plt.show()
+>>>>>>> 4bae46d4cf7bab21d6e0eee91aed4e89c81d6256
    
