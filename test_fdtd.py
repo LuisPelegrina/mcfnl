@@ -19,12 +19,6 @@ fd.c_p[fd.x> 5-fd.d/2] = 1 + 0j
 fd.a_p[fd.x> 5+fd.d/2] = 0 + 0j
 fd.c_p[fd.x> 5+fd.d/2] = 0 + 0j
 
-a_p_int = fd.a_p[50]
-c_p_int = fd.c_p[50]
-
-frec_max = 20
-Nfrec = 100
-frecfd = np.linspace(0, frec_max, num = Nfrec)
 
 Epsilon = np.zeros(frecfd.shape, dtype=np.complex_)
 for w in range(0, len(frecfd)):
@@ -66,16 +60,6 @@ for _ in np.arange(0, t_max, fd.dt):
     e_t[int(_/fn.dt)] = fn.e[40]
     e_t2[int(_/fn.dt)] = fn.e[70]   
 
-    R = np.corrcoef(initialField, fn.e)
-
-    #plt.plot(fn.x, fn.e, '*')
-    #plt.plot(fn.xDual, fn.h, '.')
-    #plt.plot(fn.x, np.abs(fn.J), '.')
-    #plt.ylim(-1.1, 1.1)
-    #plt.xlim(fn.x[0], fn.x[-1])
-    #plt.grid()
-    #plt.pause(0.01)
-    #plt.cla()
 
 # plt.figure()
 # plt.plot(frecfd, np.real(Epsilon))
