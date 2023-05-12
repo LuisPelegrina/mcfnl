@@ -11,12 +11,8 @@ max_freq = 20
 n_freq = 40
 freq = np.linspace(0, max_freq, num = n_freq)
 
-#eps_c = np.zeros(freq.shape, dtype=np.complex_)
+eps_c = np.zeros(freq.shape, dtype=np.complex_)
 eps_c = [fd.theoretical_test(w) for w in freq]
-# plt.plot(freq, np.real(eps_c))
-# plt.plot(freq, np.imag(eps_c))
-# plt.show()
-
 
 gamma = [1j * freq[i] * np.sqrt(fd.mu_0 * eps_c[i]) for i in range(n_freq)]
 eta = [np.sqrt(fd.mu_0 / eps_c[i]) for i in range(n_freq)]
